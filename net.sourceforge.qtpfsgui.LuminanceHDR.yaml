@@ -120,6 +120,11 @@ modules:
       - type: archive
         url: https://github.com/ukoethe/vigra/archive/Version-1-9-0.tar.gz
         sha256: dc041f7ccf838d4321e9bcf522fece1758768dd7a3f8350d1e83e2b8e6daf1e6
+    cleanup:
+      - /bin
+      - /doc
+      - /lib/vigra/
+      - /share
 
   - name: glew
     no-autogen: true
@@ -165,6 +170,11 @@ modules:
       - type: archive
         url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.4/wxWidgets-3.0.4.tar.bz2
         sha256: 96157f988d261b7368e5340afa1a0cad943768f35929c22841f62c25b17bf7f0
+    cleanup:
+      - /bin
+      - /lib
+      - /doc
+      - /share
 
   - name: libpano13
     buildsystem: cmake
@@ -172,6 +182,9 @@ modules:
       - type: archive
         url: https://downloads.sourceforge.net/project/panotools/libpano13/libpano13-2.9.19/libpano13-2.9.19.tar.gz
         sha256: 037357383978341dea8f572a5d2a0876c5ab0a83dffda431bd393357e91d95a8
+    cleanup:
+      - /bin
+      - /share
 
   - name: align_image_stack
     buildsystem: cmake-ninja
@@ -180,8 +193,32 @@ modules:
       - type: archive
         url: https://downloads.sourceforge.net/project/hugin/hugin/hugin-2018.0/hugin-2018.0.0.tar.bz2
         sha256: d3af0d066ac50e3bb243a175a64ecda136d87178419457e8822e11bcf0e565cb
-      #- type: patch
-        #path: patches/hugin.patch
+    cleanup:
+      - /bin/autooptimiser
+      - /bin/calibrate_lens_gui
+      - /bin/celeste_standalone
+      - /bin/checkpto
+      - /bin/cpclean
+      - /bin/cpfind
+      - /bin/deghosting_mask
+      - /bin/fulla
+      - /bin/geocpset
+      - /bin/hugin*
+      - /bin/icpfind
+      - /bin/linefind
+      - /bin/nona
+      - /bin/pano*
+      - /bin/PT*
+      - /bin/pto_*
+      - /bin/tca_correct
+      - /bin/verdandi
+      - /bin/vig_optimize
+      - /lib/libceleste*
+      - /lib/libhuginbaswwx*
+      - /lib/libicpfindlib*
+      - /lib/liblocalfeatures*
+      - /share
+
 
   - name: luminance
     buildsystem: cmake-ninja
