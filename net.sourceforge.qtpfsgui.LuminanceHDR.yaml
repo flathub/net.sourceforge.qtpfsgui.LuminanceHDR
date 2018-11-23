@@ -161,7 +161,8 @@ modules:
       - /share
 
   - name: libpano13
-    buildsystem: cmake
+    buildsystem: cmake-ninja
+    builddir: true
     sources:
       - type: archive
         url: https://downloads.sourceforge.net/project/panotools/libpano13/libpano13-2.9.19/libpano13-2.9.19.tar.gz
