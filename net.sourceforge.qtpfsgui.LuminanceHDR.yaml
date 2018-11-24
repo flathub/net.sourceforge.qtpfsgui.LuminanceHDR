@@ -109,6 +109,101 @@ modules:
         url: http://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/cfitsio3450.tar.gz
         sha256: bf6012dbe668ecb22c399c4b7b2814557ee282c74a7d5dc704eb17c30d9fb92e
 
+  # ==============================
+  # align_image_stack dependencies
+  # ==============================
+  - name: vigra
+    buildsystem: cmake-ninja
+    config-opts:
+       - -DWITH_OPENEXR=ON
+    sources:
+      - type: archive
+        url: https://github.com/ukoethe/vigra/archive/Version-1-9-0.tar.gz
+        sha256: dc041f7ccf838d4321e9bcf522fece1758768dd7a3f8350d1e83e2b8e6daf1e6
+    cleanup:
+      - /bin
+      - /doc
+      - /lib/vigra/
+      - /share
+
+  - shared-modules/glew/glew.json
+  - shared-modules/glu/glu-9.0.0.json
+
+  - name: wxWidgets
+    cleanup:
+      - /bin
+      - /share/bakefile
+    config-opts:
+      - --with-opengl
+      - --with-libjpeg
+      - --with-libtiff
+      - --with-libpng
+      - --with-zlib
+      - --disable-sdltest
+      - --enable-unicode
+      - --enable-display
+      - --enable-propgrid
+      - --disable-webkit
+      - --disable-webview
+      - --disable-webviewwebkit
+      - --with-expat=builtin
+      - --with-libiconv=/usr
+    build-options:
+      cxxflags: "-std=c++0x"
+    sources:
+      - type: archive
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.4/wxWidgets-3.0.4.tar.bz2
+        sha256: 96157f988d261b7368e5340afa1a0cad943768f35929c22841f62c25b17bf7f0
+    cleanup:
+      - /bin
+      - /lib
+      - /doc
+      - /share
+
+  - name: libpano13
+    buildsystem: cmake-ninja
+    builddir: true
+    sources:
+      - type: archive
+        url: https://downloads.sourceforge.net/project/panotools/libpano13/libpano13-2.9.19/libpano13-2.9.19.tar.gz
+        sha256: 037357383978341dea8f572a5d2a0876c5ab0a83dffda431bd393357e91d95a8
+    cleanup:
+      - /bin
+      - /share
+
+  - name: align_image_stack
+    buildsystem: cmake-ninja
+    builddir: true
+    sources:
+      - type: archive
+        url: https://downloads.sourceforge.net/project/hugin/hugin/hugin-2018.0/hugin-2018.0.0.tar.bz2
+        sha256: d3af0d066ac50e3bb243a175a64ecda136d87178419457e8822e11bcf0e565cb
+    cleanup:
+      - /bin/autooptimiser
+      - /bin/calibrate_lens_gui
+      - /bin/celeste_standalone
+      - /bin/checkpto
+      - /bin/cpclean
+      - /bin/cpfind
+      - /bin/deghosting_mask
+      - /bin/fulla
+      - /bin/geocpset
+      - /bin/hugin*
+      - /bin/icpfind
+      - /bin/linefind
+      - /bin/nona
+      - /bin/pano*
+      - /bin/PT*
+      - /bin/pto_*
+      - /bin/tca_correct
+      - /bin/verdandi
+      - /bin/vig_optimize
+      - /lib/libceleste*
+      - /lib/libhuginbaswwx*
+      - /lib/libicpfindlib*
+      - /lib/liblocalfeatures*
+      - /share
+
   - name: luminance
     buildsystem: cmake-ninja
     sources:
