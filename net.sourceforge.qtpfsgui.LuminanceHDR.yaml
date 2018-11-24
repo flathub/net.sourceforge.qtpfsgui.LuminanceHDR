@@ -78,18 +78,12 @@ modules:
     config-opts:
      - --disable-examples
      - --disable-static
+     - --enable-openmp
+     - --enable-lcms
     sources:
       - type: archive
-        url: https://www.libraw.org/data/LibRaw-demosaic-pack-GPL2-0.18.8.tar.gz
-        sha256: 0b24bcf7bbb5d13fde58bb071f94dc9354be09bc44b2bba0698493065e99f8da
-        dest: ./LibRaw-demosaic-pack-GPL2
-      - type: archive
-        url: https://www.libraw.org/data/LibRaw-demosaic-pack-GPL3-0.18.8.tar.gz
-        sha256: ffd6916cd66c8101e4e6b589799f256c897748d2fd2486aa34c3705146dbc701
-        dest: ./LibRaw-demosaic-pack-GPL3
-      - type: archive
-        url: https://www.libraw.org/data/LibRaw-0.18.13.tar.gz
-        sha256: cb1f9d0d1fabc8967d501d95c05d2b53d97a2b917345c66553b1abbea06757ca
+        url: https://www.libraw.org/data/LibRaw-0.19.1.tar.gz
+        sha256: a21019db16d87accbb8660056365ab09a204475c77c97b86c922bb972ce15ef6
     cleanup: [/share/doc]
 
   - name: gsl
@@ -216,6 +210,8 @@ modules:
         path: net.sourceforge.qtpfsgui.LuminanceHDR.desktop
       - type: file
         path: net.sourceforge.qtpfsgui.LuminanceHDR.svg
+    config-opts:
+       - -DCMAKE_BUILD_TYPE=Release
     post-install:
       - install -Dm 644 net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml -t /app/share/appdata
       - install -Dm 644 net.sourceforge.qtpfsgui.LuminanceHDR.desktop -t /app/share/applications
