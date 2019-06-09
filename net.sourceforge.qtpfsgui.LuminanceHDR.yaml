@@ -103,6 +103,14 @@ modules:
         url: http://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/cfitsio3450.tar.gz
         sha256: bf6012dbe668ecb22c399c4b7b2814557ee282c74a7d5dc704eb17c30d9fb92e
 
+  - name: eigen3
+    buildsystem: cmake-ninja
+    builddir: true
+    sources:
+      - type: archive
+        url: https://bitbucket.org/eigen/eigen/get/3.3.7.tar.gz
+        sha256: 7e84ef87a07702b54ab3306e77cea474f56a40afa1c0ab245bb11725d006d0da
+
   # ==============================
   # align_image_stack dependencies
   # ==============================
@@ -202,8 +210,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/LuminanceHDR/LuminanceHDR/archive/v.2.5.1.tar.gz
-        sha256: 07c02b85a09be1cc4c8940d55a7a2f24c55a071904fedf7c81e621fd0f0ba878
+        url: https://github.com/LuminanceHDR/LuminanceHDR/archive/v.2.6.0.tar.gz
+        sha256: c325e0a78a9f2bbfc1af683e09a4eeb412674615a2b17a29f4626962ac3e518c
       - type: file
         path: net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml
       - type: file
