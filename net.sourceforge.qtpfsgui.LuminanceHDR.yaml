@@ -209,9 +209,9 @@ modules:
   - name: luminance
     buildsystem: cmake-ninja
     sources:
-      - type: git
-        url: https://github.com/LuminanceHDR/LuminanceHDR/
-        commit: 0a68ee751da7fb16c1f83d76d2fc37220bbffc1f
+      - type: archive
+        url: https://github.com/LuminanceHDR/LuminanceHDR/archive/v.2.6.0.tar.gz
+        sha256: c325e0a78a9f2bbfc1af683e09a4eeb412674615a2b17a29f4626962ac3e518c
       - type: file
         path: net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml
       - type: file
