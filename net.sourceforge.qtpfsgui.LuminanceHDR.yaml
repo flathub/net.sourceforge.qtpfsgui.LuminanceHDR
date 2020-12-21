@@ -82,8 +82,8 @@ modules:
      - --enable-lcms
     sources:
       - type: archive
-        url: https://www.libraw.org/data/LibRaw-0.19.1.tar.gz
-        sha256: a21019db16d87accbb8660056365ab09a204475c77c97b86c922bb972ce15ef6
+        url: https://www.libraw.org/data/LibRaw-0.20.2.tar.gz
+        sha256: dc1b486c2003435733043e4e05273477326e51c3ea554c6864a4eafaff1004a6
     cleanup: [/share/doc]
 
   - name: gsl
