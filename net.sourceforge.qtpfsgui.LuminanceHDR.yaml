@@ -1,6 +1,8 @@
 app-id: net.sourceforge.qtpfsgui.LuminanceHDR
 runtime: org.kde.Platform
-runtime-version: "5.12"
+runtime-version: "5.15"
+base: io.qt.qtwebengine.BaseApp
+base-version: "5.15"
 sdk: org.kde.Sdk
 command: luminance-hdr
 rename-icon: luminance-hdr
@@ -19,11 +21,12 @@ cleanup:
   - /share/aclocal
 modules:
   - name: exiv2
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     sources:
       - type: git
         url: https://github.com/Exiv2/exiv2/
-        commit: e7ffd83af29187190da7f98dcbca8a4d70e19582
+        tag: v0.27.4
+        commit: 15098f4ef50cc721ad0018218acab2ff06e60beb
     cleanup:
       - /bin
       - /share/man
@@ -37,8 +40,8 @@ modules:
       - --disable-fortran
     sources:
       - type: archive
-        url: http://fftw.org/fftw-3.3.8.tar.gz
-        md5: 8aac833c943d8e90d51b697b27d4384d
+        url: https://fftw.org/fftw-3.3.9.tar.gz
+        sha256: bf2c7ce40b04ae811af714deb512510cc2c17b9ab9d6ddcf49fe4487eea7af3d
     cleanup:
       - /bin
       - /share/info
@@ -70,11 +73,10 @@ modules:
       - "./b2 -j $FLATPAK_BUILDER_N_JOBS install"
     sources:
       - type: archive
-        url: https://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.tar.bz2
-        sha256: 7f6130bc3cf65f56a618888ce9d5ea704fa10b462be126ad053e80e553d6d8b7
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2
+        sha256: f0397ba6e982c4450f27bf32a2a83292aba035b827a5623a14636ea583318c41
 
   - name: libraw
-    buildsystem: autotools
     config-opts:
      - --disable-examples
      - --disable-static
@@ -82,15 +84,18 @@ modules:
      - --enable-lcms
     sources:
       - type: archive
-        url: https://www.libraw.org/data/LibRaw-0.19.1.tar.gz
-        sha256: a21019db16d87accbb8660056365ab09a204475c77c97b86c922bb972ce15ef6
+        url: https://www.libraw.org/data/LibRaw-0.20.2.tar.gz
+        sha256: dc1b486c2003435733043e4e05273477326e51c3ea554c6864a4eafaff1004a6
+      - type: shell
+        commands:
+          - autoreconf -vfi
     cleanup: [/share/doc]
 
   - name: gsl
     sources:
       - type: archive
-        url: http://ftp.halifax.rwth-aachen.de/gnu/gsl/gsl-2.3.tar.gz
-        sha256: 562500b789cd599b3a4f88547a7a3280538ab2ff4939504c8b4ac4ca25feadfb
+        url: https://ftp.halifax.rwth-aachen.de/gnu/gsl/gsl-2.7.tar.gz
+        sha256: efbbf3785da0e53038be7907500628b466152dbc3c173a87de1b5eba2e23602b
     cleanup:
       - /bin
       - /share/info
@@ -100,7 +105,7 @@ modules:
     make-args: [shared]
     sources:
       - type: archive
-        url: http://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/cfitsio3450.tar.gz
+        url: https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/cfitsio3450.tar.gz
         sha256: bf6012dbe668ecb22c399c4b7b2814557ee282c74a7d5dc704eb17c30d9fb92e
 
   - name: eigen3
@@ -108,14 +113,14 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://bitbucket.org/eigen/eigen/get/3.3.7.tar.gz
-        sha256: 7e84ef87a07702b54ab3306e77cea474f56a40afa1c0ab245bb11725d006d0da
+        url: https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.bz2
+        sha256: 0fa5cafe78f66d2b501b43016858070d52ba47bd9b1016b0165a7b8e04675677
 
   # ==============================
   # align_image_stack dependencies
   # ==============================
   - shared-modules/glew/glew.json
-  - shared-modules/glu/glu-9.0.0.json
+  - shared-modules/glu/glu-9.json
 
   - name: wxWidgets
     cleanup:
@@ -131,7 +136,6 @@ modules:
       - --enable-unicode
       - --enable-display
       - --enable-propgrid
-      - --disable-webkit
       - --disable-webview
       - --disable-webviewwebkit
       - --with-expat=builtin
@@ -140,8 +144,8 @@ modules:
       cxxflags: "-std=c++0x"
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.4/wxWidgets-3.0.4.tar.bz2
-        sha256: 96157f988d261b7368e5340afa1a0cad943768f35929c22841f62c25b17bf7f0
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2
+        sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224
     cleanup:
       - /bin
       - /lib
@@ -153,8 +157,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://downloads.sourceforge.net/project/panotools/libpano13/libpano13-2.9.19/libpano13-2.9.19.tar.gz
-        sha256: 037357383978341dea8f572a5d2a0876c5ab0a83dffda431bd393357e91d95a8
+        url: https://downloads.sourceforge.net/project/panotools/libpano13/libpano13-2.9.20/libpano13-2.9.20.tar.gz
+        sha256: 3b532836c37b8cd75cd2227fd9207f7aca3fdcbbd1cce3b9749f056a10229b89
     cleanup:
       - /bin
       - /share
@@ -178,8 +182,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://downloads.sourceforge.net/project/hugin/hugin/hugin-2018.0/hugin-2018.0.0.tar.bz2
-        sha256: d3af0d066ac50e3bb243a175a64ecda136d87178419457e8822e11bcf0e565cb
+        url: https://sourceforge.net/projects/hugin/files/hugin/hugin-2020.0/hugin-2020.0.0.tar.bz2
+        sha256: 283e7601259a7914cb075333424410928a439dc5f84216f33e2fe55501fbcacb
     cleanup:
       - /bin/autooptimiser
       - /bin/calibrate_lens_gui
