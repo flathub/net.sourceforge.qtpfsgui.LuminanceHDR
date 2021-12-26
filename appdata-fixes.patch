@@ -1,0 +1,14 @@
+diff --git a/net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml b/net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml
+index ddc545f..8ab2e29 100644
+--- a/net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml
++++ b/net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml
+@@ -48,7 +48,9 @@
+   <url type="donation">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=10037712</url>
+ 
+   <releases>
++    <release version="2.6.1.1" date="2021-01-11" />
++    <release version="2.6.1" date="2021-01-6" />
+     <release version="2.6.0" date="2019-06-09" />
+   </releases>
+   <categories>
+     <category>Graphics</category>
