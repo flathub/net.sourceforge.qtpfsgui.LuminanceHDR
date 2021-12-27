@@ -128,9 +128,6 @@ modules:
   - shared-modules/glu/glu-9.json
 
   - name: wxWidgets
-    cleanup:
-      - /bin
-      - /share/bakefile
     config-opts:
       - --with-opengl
       - --with-libjpeg
