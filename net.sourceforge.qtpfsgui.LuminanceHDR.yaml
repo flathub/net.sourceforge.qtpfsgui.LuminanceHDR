@@ -1,8 +1,8 @@
 app-id: net.sourceforge.qtpfsgui.LuminanceHDR
 runtime: org.kde.Platform
-runtime-version: "5.15-21.08"
+runtime-version: "5.15-22.08"
 base: io.qt.qtwebengine.BaseApp
-base-version: "5.15-21.08"
+base-version: "5.15-22.08"
 sdk: org.kde.Sdk
 command: luminance-hdr
 rename-icon: luminance-hdr
@@ -26,8 +26,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: http://www.exiv2.org/builds/exiv2-0.27.5-Source.tar.gz
-        sha256: 35a58618ab236a901ca4928b0ad8b31007ebdc0386d904409d825024e45ea6e2
+        url: https://github.com/Exiv2/exiv2/releases/download/v0.27.7/exiv2-0.27.7-Source.tar.gz
+        sha256: 70629dc27e3d4dd5c3fa91afbea93166d338b1de284e6a4c44bbf9dcfe7bbc6d
     cleanup:
       - /bin
       - /share/man
@@ -155,12 +155,12 @@ modules:
       - /share
 
   - name: libpano13
-    buildsystem: cmake # cmake-ninja doesn't work OK with libpano13 and __FILE__ macro in its sources
+    buildsystem: cmake-ninja
     builddir: true
     sources:
       - type: archive
-        url: https://downloads.sourceforge.net/project/panotools/libpano13/libpano13-2.9.20/libpano13-2.9.20.tar.gz
-        sha256: 3b532836c37b8cd75cd2227fd9207f7aca3fdcbbd1cce3b9749f056a10229b89
+        url: https://downloads.sourceforge.net/project/panotools/libpano13/libpano13-2.9.22/libpano13-2.9.22.tar.gz
+        sha256: affc6830cdbe71c28d2731dcbf8dea2acda6d9ffd4609c6dbf3ba0c68440a8e3
     cleanup:
       - /bin
       - /share

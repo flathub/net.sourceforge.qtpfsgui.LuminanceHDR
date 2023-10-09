@@ -1,8 +1,32 @@
 diff --git a/net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml b/net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml
-index ddc545f..8ab2e29 100644
+index 8fae287a..c495b7fc 100644
 --- a/net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml
 +++ b/net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml
-@@ -48,7 +48,9 @@
+@@ -17,19 +17,19 @@
+ 
+   <screenshots>
+     <screenshot type="default">
+-      <image>http://qtpfsgui.sourceforge.net/screenshots/MainWindow.png</image>
++      <image>https://a.fsdn.com/con/app/proj/qtpfsgui/screenshots/MainWindow.png</image>
+       <caption>LuminanceHDR Main Window</caption>
+     </screenshot>
+     <screenshot>
+-      <image>http://qtpfsgui.sourceforge.net/screenshots/Tonemapped-image.png</image>
++      <image>https://a.fsdn.com/con/app/proj/qtpfsgui/screenshots/MainWindow-tm.png</image>
+       <caption>Example of tonemapping of HDR</caption>
+     </screenshot>
+     <screenshot>
+-      <image>http://qtpfsgui.sourceforge.net/screenshots/HDR-Wizard-1st-page.png</image>
++      <image>https://a.fsdn.com/con/app/proj/qtpfsgui/screenshots/HdrWizard.png</image>
+       <caption>HDR Wizard</caption>
+     </screenshot>
+     <screenshot>
+-      <image>http://qtpfsgui.sourceforge.net/screenshots/Batch-TM.png</image>
++      <image>https://a.fsdn.com/con/app/proj/qtpfsgui/screenshots/BatchHDR.png</image>
+       <caption>Batch Tonemapping</caption>
+     </screenshot>
+   </screenshots>
+@@ -48,6 +48,8 @@
    <url type="donation">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=10037712</url>
  
    <releases>
@@ -11,4 +35,3 @@ index ddc545f..8ab2e29 100644
      <release version="2.6.0" date="2019-06-09" />
    </releases>
    <categories>
-     <category>Graphics</category>
