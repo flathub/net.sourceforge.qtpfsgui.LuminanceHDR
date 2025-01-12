@@ -1,8 +1,8 @@
 app-id: net.sourceforge.qtpfsgui.LuminanceHDR
 runtime: org.kde.Platform
-runtime-version: "5.15-23.08"
+runtime-version: "5.15-24.08"
 base: io.qt.qtwebengine.BaseApp
-base-version: "5.15-23.08"
+base-version: "5.15-24.08"
 sdk: org.kde.Sdk
 command: luminance-hdr
 rename-icon: luminance-hdr
@@ -12,6 +12,7 @@ finish-args:
   - --filesystem=home
   - --share=network
   - --device=dri
+  - --env=QT_AUTO_SCREEN_SCALE_FACTOR=1
 cleanup:
   - /include
   - /lib/cmake
@@ -32,21 +33,7 @@ modules:
       - /bin
       - /share/man
 
-  - name: fftw3
-    buildsystem: autotools
-    config-opts:
-      - --enable-float
-      - --enable-threads
-      - --enable-openmp
-      - --disable-fortran
-    sources:
-      - type: archive
-        url: https://fftw.org/fftw-3.3.9.tar.gz
-        sha256: bf2c7ce40b04ae811af714deb512510cc2c17b9ab9d6ddcf49fe4487eea7af3d
-    cleanup:
-      - /bin
-      - /share/info
-      - /share/man
+  - shared-modules/linux-audio/fftw3f.json
 
   - name: ilmbase
     build-options:
@@ -179,7 +166,7 @@ modules:
       - /lib/vigra/
       - /share
 
-  - name: align_image_stack
+  - name: hugin
     buildsystem: cmake-ninja
     builddir: true
     sources:
@@ -214,6 +201,12 @@ modules:
 
   - name: luminance
     buildsystem: cmake-ninja
+    config-opts:
+       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    post-install:
+      - install -Dm 644 net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml -t /app/share/appdata
+      - install -Dm 644 net.sourceforge.qtpfsgui.LuminanceHDR.desktop -t /app/share/applications
+      - install -Dm 644 net.sourceforge.qtpfsgui.LuminanceHDR.svg -t /app/share/icons/hicolor/scalable/apps
     sources:
       - type: archive
         url: https://github.com/LuminanceHDR/LuminanceHDR/archive/v.2.6.1.1.tar.gz
@@ -222,9 +215,3 @@ modules:
         path: net.sourceforge.qtpfsgui.LuminanceHDR.svg
       - type: patch
         path: appdata-fixes.patch
-    config-opts:
-       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-    post-install:
-      - install -Dm 644 net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml -t /app/share/appdata
-      - install -Dm 644 net.sourceforge.qtpfsgui.LuminanceHDR.desktop -t /app/share/applications
-      - install -Dm 644 net.sourceforge.qtpfsgui.LuminanceHDR.svg -t /app/share/icons/hicolor/scalable/apps
