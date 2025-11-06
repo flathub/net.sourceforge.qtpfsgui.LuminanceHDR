@@ -1,8 +1,8 @@
 app-id: net.sourceforge.qtpfsgui.LuminanceHDR
 runtime: org.kde.Platform
-runtime-version: "5.15-24.08"
+runtime-version: "5.15-25.08"
 base: io.qt.qtwebengine.BaseApp
-base-version: "5.15-24.08"
+base-version: "5.15-25.08"
 sdk: org.kde.Sdk
 command: luminance-hdr
 rename-icon: luminance-hdr
@@ -65,7 +65,7 @@ modules:
       - "./b2 -j $FLATPAK_BUILDER_N_JOBS install"
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2
+        url: https://archives.boost.io/release/1.76.0/source/boost_1_76_0.tar.bz2
         sha256: f0397ba6e982c4450f27bf32a2a83292aba035b827a5623a14636ea583318c41
 
   - name: libraw
@@ -94,7 +94,10 @@ modules:
       - /share/man
 
   - name: cfitsio
-    make-args: [shared]
+    make-args:
+      - shared
+    build-options:
+      cflags: -std=gnu17
     sources:
       - type: archive
         url: https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/cfitsio3450.tar.gz
@@ -103,6 +106,8 @@ modules:
   - name: eigen3
     buildsystem: cmake-ninja
     builddir: true
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     sources:
       - type: archive
         url: https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.bz2
@@ -144,6 +149,10 @@ modules:
   - name: libpano13
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      cflags: -std=gnu17
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     sources:
       - type: archive
         url: https://downloads.sourceforge.net/project/panotools/libpano13/libpano13-2.9.22/libpano13-2.9.22.tar.gz
@@ -156,10 +165,11 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
        - -DWITH_OPENEXR=ON
+       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     sources:
       - type: archive
-        url: https://github.com/ukoethe/vigra/archive/Version-1-11-1.tar.gz
-        sha256: b2718250d28baf1932fcbe8e30f7e4d146e751ad0e726e375a72a0cdb4e3250e
+        url: https://github.com/ukoethe/vigra/archive/refs/tags/Version-1-11-2.tar.gz
+        sha256: 4841936f5c3c137611ec782e293d961df29d3b5b70ade8cb711374de0f4cb5d3
     cleanup:
       - /bin
       - /doc
@@ -203,6 +213,7 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
        - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     post-install:
       - install -Dm 644 net.sourceforge.qtpfsgui.LuminanceHDR.appdata.xml -t /app/share/appdata
       - install -Dm 644 net.sourceforge.qtpfsgui.LuminanceHDR.desktop -t /app/share/applications
